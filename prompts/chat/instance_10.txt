@@ -1,0 +1,39 @@
+You are the production planner of a small food factory. Build a schedule for the 7 jobs below on two machines, A and B.
+
+HARD RULES (every one of them must hold):
+1. Each job runs exactly once, on exactly one machine (A or B), without interruption.
+2. A machine runs one job at a time. Processing times depend on the machine (table below).
+3. Changeover: if job Y runs right after job X on the same machine, Y may not start until at least the changeover time from X to Y (table below) has passed since X finished. The first job on a machine needs no changeover. The two machines are independent of each other.
+4. Deadline: every job must finish at or before its deadline.
+5. Allergens: on each machine, every job that contains nuts must come after all jobs that do not contain nuts.
+6. Machine B is shut down for power saving from minute 90 to minute 120. No job may be running on B during that window (a job may finish exactly at minute 90 or start exactly at minute 120).
+7. Time starts at minute 0. All times are whole minutes.
+
+OBJECTIVE: minimize  cost = makespan + running cost.
+Makespan is the minute at which the last job finishes. Running cost is 1 per minute of processing on machine A plus 3 per minute of processing on machine B.
+
+JOBS:
+job | minutes on A | minutes on B | deadline | contains nuts
+P1 | 50 | 25 | 105 | no
+P2 | 50 | 40 | 280 | yes
+P3 | 35 | 20 | 155 | yes
+P4 | 60 | 40 | 130 | no
+P5 | 45 | 35 | 50 | no
+P6 | 30 | 20 | 205 | no
+P7 | 45 | 30 | 35 | no
+
+CHANGEOVER MINUTES (row = job that just finished, column = job that starts next):
+     | P1 | P2 | P3 | P4 | P5 | P6 | P7
+P1 | - | 5 | 25 | 15 | 25 | 25 | 20
+P2 | 15 | - | 25 | 5 | 15 | 25 | 15
+P3 | 25 | 15 | - | 15 | 10 | 15 | 25
+P4 | 5 | 15 | 25 | - | 15 | 15 | 25
+P5 | 15 | 25 | 15 | 25 | - | 15 | 20
+P6 | 15 | 15 | 15 | 15 | 25 | - | 10
+P7 | 25 | 20 | 15 | 25 | 15 | 10 | -
+
+Solve this by reasoning only. Do not use code execution or any external tool.
+
+OUTPUT: finish your answer with one JSON object in exactly this shape, with nothing after it:
+{"schedule": [{"job": "P1", "machine": "A", "start": 0}, {"job": "P2", "machine": "B", "start": 0}]}
+List every job exactly once. "start" is the start minute (a whole number).

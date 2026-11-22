@@ -1,0 +1,38 @@
+{
+  "cost": 405,
+  "makespan": 135,
+  "schedule": [
+    {
+      "job": "P2",
+      "machine": "A",
+      "start": 0
+    },
+    {
+      "job": "P4",
+      "machine": "A",
+      "start": 45
+    },
+    {
+      "job": "P1",
+      "machine": "A",
+      "start": 105
+    },
+    {
+      "job": "P3",
+      "machine": "B",
+      "start": 0
+    },
+    {
+      "job": "P5",
+      "machine": "B",
+      "start": 90
+    },
+    {
+      "job": "P6",
+      "machine": "B",
+      "start": 105
+    }
+  ],
+  "feasible_orders": 4,
+  "total_orders": 5040
+}
